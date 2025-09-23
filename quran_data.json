@@ -1,0 +1,1484 @@
+[
+  {
+    "surah_id": 1,
+    "name_en": "The Opening",
+    "name_ar": "الفاتحة",
+    "ayah_range": [
+      1,
+      7
+    ],
+    "word_range": [
+      1,
+      74
+    ]
+  },
+  {
+    "surah_id": 2,
+    "name_en": "The Cow",
+    "name_ar": "البقرة",
+    "ayah_range": [
+      1,
+      286
+    ],
+    "word_range": [
+      75,
+      12390
+    ]
+  },
+  {
+    "surah_id": 3,
+    "name_en": "The Family of Imraan",
+    "name_ar": "آل عمران",
+    "ayah_range": [
+      1,
+      200
+    ],
+    "word_range": [
+      12391,
+      19470
+    ]
+  },
+  {
+    "surah_id": 4,
+    "name_en": "The Women",
+    "name_ar": "النساء",
+    "ayah_range": [
+      1,
+      176
+    ],
+    "word_range": [
+      19471,
+      26817
+    ]
+  },
+  {
+    "surah_id": 5,
+    "name_en": "The Table",
+    "name_ar": "المائدة",
+    "ayah_range": [
+      1,
+      120
+    ],
+    "word_range": [
+      26818,
+      32415
+    ]
+  },
+  {
+    "surah_id": 6,
+    "name_en": "The Cattle",
+    "name_ar": "الأنعام",
+    "ayah_range": [
+      1,
+      165
+    ],
+    "word_range": [
+      32416,
+      38641
+    ]
+  },
+  {
+    "surah_id": 7,
+    "name_en": "The Heights",
+    "name_ar": "الأعراف",
+    "ayah_range": [
+      1,
+      206
+    ],
+    "word_range": [
+      38642,
+      45437
+    ]
+  },
+  {
+    "surah_id": 8,
+    "name_en": "The Spoils of War",
+    "name_ar": "الأنفال",
+    "ayah_range": [
+      1,
+      75
+    ],
+    "word_range": [
+      45438,
+      47962
+    ]
+  },
+  {
+    "surah_id": 9,
+    "name_en": "The Repentance",
+    "name_ar": "التوبة",
+    "ayah_range": [
+      1,
+      129
+    ],
+    "word_range": [
+      47963,
+      53131
+    ]
+  },
+  {
+    "surah_id": 10,
+    "name_en": "Jonas",
+    "name_ar": "يونس",
+    "ayah_range": [
+      1,
+      109
+    ],
+    "word_range": [
+      53132,
+      56719
+    ]
+  },
+  {
+    "surah_id": 11,
+    "name_en": "Hud",
+    "name_ar": "هود",
+    "ayah_range": [
+      1,
+      123
+    ],
+    "word_range": [
+      56720,
+      60649
+    ]
+  },
+  {
+    "surah_id": 12,
+    "name_en": "Joseph",
+    "name_ar": "يوسف",
+    "ayah_range": [
+      1,
+      111
+    ],
+    "word_range": [
+      60650,
+      64215
+    ]
+  },
+  {
+    "surah_id": 13,
+    "name_en": "The Thunder",
+    "name_ar": "الرعد",
+    "ayah_range": [
+      1,
+      43
+    ],
+    "word_range": [
+      64216,
+      65916
+    ]
+  },
+  {
+    "surah_id": 14,
+    "name_en": "Abraham",
+    "name_ar": "ابراهيم",
+    "ayah_range": [
+      1,
+      52
+    ],
+    "word_range": [
+      65917,
+      67565
+    ]
+  },
+  {
+    "surah_id": 15,
+    "name_en": "The Rock",
+    "name_ar": "الحجر",
+    "ayah_range": [
+      1,
+      99
+    ],
+    "word_range": [
+      67566,
+      68954
+    ]
+  },
+  {
+    "surah_id": 16,
+    "name_en": "The Bee",
+    "name_ar": "النحل",
+    "ayah_range": [
+      1,
+      128
+    ],
+    "word_range": [
+      68955,
+      72711
+    ]
+  },
+  {
+    "surah_id": 17,
+    "name_en": "The Night Journey",
+    "name_ar": "الإسراء",
+    "ayah_range": [
+      1,
+      111
+    ],
+    "word_range": [
+      72712,
+      75934
+    ]
+  },
+  {
+    "surah_id": 18,
+    "name_en": "The Cave",
+    "name_ar": "الكهف",
+    "ayah_range": [
+      1,
+      110
+    ],
+    "word_range": [
+      75935,
+      79284
+    ]
+  },
+  {
+    "surah_id": 19,
+    "name_en": "Mary",
+    "name_ar": "مريم",
+    "ayah_range": [
+      1,
+      98
+    ],
+    "word_range": [
+      79285,
+      81320
+    ]
+  },
+  {
+    "surah_id": 20,
+    "name_en": "Taa-Haa",
+    "name_ar": "طه",
+    "ayah_range": [
+      1,
+      135
+    ],
+    "word_range": [
+      81321,
+      84150
+    ]
+  },
+  {
+    "surah_id": 21,
+    "name_en": "The Prophets",
+    "name_ar": "الأنبياء",
+    "ayah_range": [
+      1,
+      112
+    ],
+    "word_range": [
+      84151,
+      86587
+    ]
+  },
+  {
+    "surah_id": 22,
+    "name_en": "The Pilgrimage",
+    "name_ar": "الحج",
+    "ayah_range": [
+      1,
+      78
+    ],
+    "word_range": [
+      86588,
+      89124
+    ]
+  },
+  {
+    "surah_id": 23,
+    "name_en": "The Believers",
+    "name_ar": "المؤمنون",
+    "ayah_range": [
+      1,
+      118
+    ],
+    "word_range": [
+      89125,
+      91240
+    ]
+  },
+  {
+    "surah_id": 24,
+    "name_en": "The Light",
+    "name_ar": "النور",
+    "ayah_range": [
+      1,
+      64
+    ],
+    "word_range": [
+      91241,
+      93851
+    ]
+  },
+  {
+    "surah_id": 25,
+    "name_en": "The Criterion",
+    "name_ar": "الفرقان",
+    "ayah_range": [
+      1,
+      77
+    ],
+    "word_range": [
+      93852,
+      95700
+    ]
+  },
+  {
+    "surah_id": 26,
+    "name_en": "The Poets",
+    "name_ar": "الشعراء",
+    "ayah_range": [
+      1,
+      227
+    ],
+    "word_range": [
+      95701,
+      98410
+    ]
+  },
+  {
+    "surah_id": 27,
+    "name_en": "The Ant",
+    "name_ar": "النمل",
+    "ayah_range": [
+      1,
+      93
+    ],
+    "word_range": [
+      98411,
+      100762
+    ]
+  },
+  {
+    "surah_id": 28,
+    "name_en": "The Stories",
+    "name_ar": "القصص",
+    "ayah_range": [
+      1,
+      88
+    ],
+    "word_range": [
+      100763,
+      103662
+    ]
+  },
+  {
+    "surah_id": 29,
+    "name_en": "The Spider",
+    "name_ar": "العنكبوت",
+    "ayah_range": [
+      1,
+      69
+    ],
+    "word_range": [
+      103663,
+      105631
+    ]
+  },
+  {
+    "surah_id": 30,
+    "name_en": "The Romans",
+    "name_ar": "الروم",
+    "ayah_range": [
+      1,
+      60
+    ],
+    "word_range": [
+      105632,
+      107267
+    ]
+  },
+  {
+    "surah_id": 31,
+    "name_en": "Luqman",
+    "name_ar": "لقمان",
+    "ayah_range": [
+      1,
+      34
+    ],
+    "word_range": [
+      107268,
+      108305
+    ]
+  },
+  {
+    "surah_id": 32,
+    "name_en": "The Prostration",
+    "name_ar": "السجدة",
+    "ayah_range": [
+      1,
+      30
+    ],
+    "word_range": [
+      108306,
+      109050
+    ]
+  },
+  {
+    "surah_id": 33,
+    "name_en": "The Clans",
+    "name_ar": "الأحزاب",
+    "ayah_range": [
+      1,
+      73
+    ],
+    "word_range": [
+      109051,
+      111644
+    ]
+  },
+  {
+    "surah_id": 34,
+    "name_en": "Sheba",
+    "name_ar": "سبإ",
+    "ayah_range": [
+      1,
+      54
+    ],
+    "word_range": [
+      111645,
+      113385
+    ]
+  },
+  {
+    "surah_id": 35,
+    "name_en": "The Originator",
+    "name_ar": "فاطر",
+    "ayah_range": [
+      1,
+      45
+    ],
+    "word_range": [
+      113386,
+      114904
+    ]
+  },
+  {
+    "surah_id": 36,
+    "name_en": "Yaseen",
+    "name_ar": "يس",
+    "ayah_range": [
+      1,
+      83
+    ],
+    "word_range": [
+      114905,
+      116402
+    ]
+  },
+  {
+    "surah_id": 37,
+    "name_en": "Those drawn up in Ranks",
+    "name_ar": "الصافات",
+    "ayah_range": [
+      1,
+      182
+    ],
+    "word_range": [
+      116403,
+      118283
+    ]
+  },
+  {
+    "surah_id": 38,
+    "name_en": "The Letter Saad",
+    "name_ar": "ص",
+    "ayah_range": [
+      1,
+      88
+    ],
+    "word_range": [
+      118284,
+      119836
+    ]
+  },
+  {
+    "surah_id": 39,
+    "name_en": "The Groups",
+    "name_ar": "الزمر",
+    "ayah_range": [
+      1,
+      75
+    ],
+    "word_range": [
+      119837,
+      122155
+    ]
+  },
+  {
+    "surah_id": 40,
+    "name_en": "The Forgiver",
+    "name_ar": "غافر",
+    "ayah_range": [
+      1,
+      85
+    ],
+    "word_range": [
+      122156,
+      124604
+    ]
+  },
+  {
+    "surah_id": 41,
+    "name_en": "Explained in Detail",
+    "name_ar": "فصلت",
+    "ayah_range": [
+      1,
+      54
+    ],
+    "word_range": [
+      124605,
+      126252
+    ]
+  },
+  {
+    "surah_id": 42,
+    "name_en": "Consultation",
+    "name_ar": "الشورى",
+    "ayah_range": [
+      1,
+      53
+    ],
+    "word_range": [
+      126253,
+      127934
+    ]
+  },
+  {
+    "surah_id": 43,
+    "name_en": "Ornaments of Gold",
+    "name_ar": "الزخرف",
+    "ayah_range": [
+      1,
+      89
+    ],
+    "word_range": [
+      127935,
+      129719
+    ]
+  },
+  {
+    "surah_id": 44,
+    "name_en": "The Smoke",
+    "name_ar": "الدخان",
+    "ayah_range": [
+      1,
+      59
+    ],
+    "word_range": [
+      129720,
+      130429
+    ]
+  },
+  {
+    "surah_id": 45,
+    "name_en": "Crouching",
+    "name_ar": "الجاثية",
+    "ayah_range": [
+      1,
+      37
+    ],
+    "word_range": [
+      130430,
+      131428
+    ]
+  },
+  {
+    "surah_id": 46,
+    "name_en": "The Dunes",
+    "name_ar": "الأحقاف",
+    "ayah_range": [
+      1,
+      35
+    ],
+    "word_range": [
+      131429,
+      132739
+    ]
+  },
+  {
+    "surah_id": 47,
+    "name_en": "Muhammad",
+    "name_ar": "محمد",
+    "ayah_range": [
+      1,
+      38
+    ],
+    "word_range": [
+      132740,
+      133838
+    ]
+  },
+  {
+    "surah_id": 48,
+    "name_en": "The Victory",
+    "name_ar": "الفتح",
+    "ayah_range": [
+      1,
+      29
+    ],
+    "word_range": [
+      133839,
+      135007
+    ]
+  },
+  {
+    "surah_id": 49,
+    "name_en": "The Inner Apartments",
+    "name_ar": "الحجرات",
+    "ayah_range": [
+      1,
+      18
+    ],
+    "word_range": [
+      135008,
+      135670
+    ]
+  },
+  {
+    "surah_id": 50,
+    "name_en": "The Letter Qaaf",
+    "name_ar": "ق",
+    "ayah_range": [
+      1,
+      45
+    ],
+    "word_range": [
+      135671,
+      136432
+    ]
+  },
+  {
+    "surah_id": 51,
+    "name_en": "The Winnowing Winds",
+    "name_ar": "الذاريات",
+    "ayah_range": [
+      1,
+      60
+    ],
+    "word_range": [
+      136433,
+      137185
+    ]
+  },
+  {
+    "surah_id": 52,
+    "name_en": "The Mount",
+    "name_ar": "الطور",
+    "ayah_range": [
+      1,
+      49
+    ],
+    "word_range": [
+      137186,
+      137865
+    ]
+  },
+  {
+    "surah_id": 53,
+    "name_en": "The Star",
+    "name_ar": "النجم",
+    "ayah_range": [
+      1,
+      62
+    ],
+    "word_range": [
+      137866,
+      138603
+    ]
+  },
+  {
+    "surah_id": 54,
+    "name_en": "The Moon",
+    "name_ar": "القمر",
+    "ayah_range": [
+      1,
+      55
+    ],
+    "word_range": [
+      138604,
+      139326
+    ]
+  },
+  {
+    "surah_id": 55,
+    "name_en": "The Beneficent",
+    "name_ar": "الرحمن",
+    "ayah_range": [
+      1,
+      78
+    ],
+    "word_range": [
+      139327,
+      140141
+    ]
+  },
+  {
+    "surah_id": 56,
+    "name_en": "The Inevitable",
+    "name_ar": "الواقعة",
+    "ayah_range": [
+      1,
+      96
+    ],
+    "word_range": [
+      140142,
+      140990
+    ]
+  },
+  {
+    "surah_id": 57,
+    "name_en": "The Iron",
+    "name_ar": "الحديد",
+    "ayah_range": [
+      1,
+      29
+    ],
+    "word_range": [
+      140991,
+      142178
+    ]
+  },
+  {
+    "surah_id": 58,
+    "name_en": "The Pleading Woman",
+    "name_ar": "المجادلة",
+    "ayah_range": [
+      1,
+      22
+    ],
+    "word_range": [
+      142179,
+      143098
+    ]
+  },
+  {
+    "surah_id": 59,
+    "name_en": "The Exile",
+    "name_ar": "الحشر",
+    "ayah_range": [
+      1,
+      24
+    ],
+    "word_range": [
+      143099,
+      143995
+    ]
+  },
+  {
+    "surah_id": 60,
+    "name_en": "She that is to be Examined",
+    "name_ar": "الممتحنة",
+    "ayah_range": [
+      1,
+      13
+    ],
+    "word_range": [
+      143996,
+      144710
+    ]
+  },
+  {
+    "surah_id": 61,
+    "name_en": "The Ranks",
+    "name_ar": "الصف",
+    "ayah_range": [
+      1,
+      14
+    ],
+    "word_range": [
+      144711,
+      145135
+    ]
+  },
+  {
+    "surah_id": 62,
+    "name_en": "Friday",
+    "name_ar": "الجمعة",
+    "ayah_range": [
+      1,
+      11
+    ],
+    "word_range": [
+      145136,
+      145476
+    ]
+  },
+  {
+    "surah_id": 63,
+    "name_en": "The Hypocrites",
+    "name_ar": "المنافقون",
+    "ayah_range": [
+      1,
+      11
+    ],
+    "word_range": [
+      145477,
+      145843
+    ]
+  },
+  {
+    "surah_id": 64,
+    "name_en": "Mutual Disillusion",
+    "name_ar": "التغابن",
+    "ayah_range": [
+      1,
+      18
+    ],
+    "word_range": [
+      145844,
+      146346
+    ]
+  },
+  {
+    "surah_id": 65,
+    "name_en": "Divorce",
+    "name_ar": "الطلاق",
+    "ayah_range": [
+      1,
+      12
+    ],
+    "word_range": [
+      146347,
+      146908
+    ]
+  },
+  {
+    "surah_id": 66,
+    "name_en": "The Prohibition",
+    "name_ar": "التحريم",
+    "ayah_range": [
+      1,
+      12
+    ],
+    "word_range": [
+      146909,
+      147386
+    ]
+  },
+  {
+    "surah_id": 67,
+    "name_en": "The Sovereignty",
+    "name_ar": "الملك",
+    "ayah_range": [
+      1,
+      30
+    ],
+    "word_range": [
+      147387,
+      148045
+    ]
+  },
+  {
+    "surah_id": 68,
+    "name_en": "The Pen",
+    "name_ar": "القلم",
+    "ayah_range": [
+      1,
+      52
+    ],
+    "word_range": [
+      148046,
+      148695
+    ]
+  },
+  {
+    "surah_id": 69,
+    "name_en": "The Reality",
+    "name_ar": "الحاقة",
+    "ayah_range": [
+      1,
+      52
+    ],
+    "word_range": [
+      148696,
+      149270
+    ]
+  },
+  {
+    "surah_id": 70,
+    "name_en": "The Ascending Stairways",
+    "name_ar": "المعارج",
+    "ayah_range": [
+      1,
+      44
+    ],
+    "word_range": [
+      149271,
+      149718
+    ]
+  },
+  {
+    "surah_id": 71,
+    "name_en": "Noah",
+    "name_ar": "نوح",
+    "ayah_range": [
+      1,
+      28
+    ],
+    "word_range": [
+      149719,
+      150148
+    ]
+  },
+  {
+    "surah_id": 72,
+    "name_en": "The Jinn",
+    "name_ar": "الجن",
+    "ayah_range": [
+      1,
+      28
+    ],
+    "word_range": [
+      150149,
+      150721
+    ]
+  },
+  {
+    "surah_id": 73,
+    "name_en": "The Enshrouded One",
+    "name_ar": "المزمل",
+    "ayah_range": [
+      1,
+      20
+    ],
+    "word_range": [
+      150722,
+      151143
+    ]
+  },
+  {
+    "surah_id": 74,
+    "name_en": "The Cloaked One",
+    "name_ar": "المدثر",
+    "ayah_range": [
+      1,
+      56
+    ],
+    "word_range": [
+      151144,
+      151669
+    ]
+  },
+  {
+    "surah_id": 75,
+    "name_en": "The Resurrection",
+    "name_ar": "القيامة",
+    "ayah_range": [
+      1,
+      40
+    ],
+    "word_range": [
+      151670,
+      152022
+    ]
+  },
+  {
+    "surah_id": 76,
+    "name_en": "Man",
+    "name_ar": "الانسان",
+    "ayah_range": [
+      1,
+      31
+    ],
+    "word_range": [
+      152023,
+      152542
+    ]
+  },
+  {
+    "surah_id": 77,
+    "name_en": "The Emissaries",
+    "name_ar": "المرسلات",
+    "ayah_range": [
+      1,
+      50
+    ],
+    "word_range": [
+      152543,
+      152944
+    ]
+  },
+  {
+    "surah_id": 78,
+    "name_en": "The Announcement",
+    "name_ar": "النبأ",
+    "ayah_range": [
+      1,
+      40
+    ],
+    "word_range": [
+      152945,
+      153318
+    ]
+  },
+  {
+    "surah_id": 79,
+    "name_en": "Those who drag forth",
+    "name_ar": "النازعات",
+    "ayah_range": [
+      1,
+      46
+    ],
+    "word_range": [
+      153319,
+      153736
+    ]
+  },
+  {
+    "surah_id": 80,
+    "name_en": "He frowned",
+    "name_ar": "عبس",
+    "ayah_range": [
+      1,
+      42
+    ],
+    "word_range": [
+      153737,
+      154042
+    ]
+  },
+  {
+    "surah_id": 81,
+    "name_en": "The Overthrowing",
+    "name_ar": "التكوير",
+    "ayah_range": [
+      1,
+      29
+    ],
+    "word_range": [
+      154043,
+      154285
+    ]
+  },
+  {
+    "surah_id": 82,
+    "name_en": "The Cleaving",
+    "name_ar": "الإنفطار",
+    "ayah_range": [
+      1,
+      19
+    ],
+    "word_range": [
+      154286,
+      154456
+    ]
+  },
+  {
+    "surah_id": 83,
+    "name_en": "Defrauding",
+    "name_ar": "المطففين",
+    "ayah_range": [
+      1,
+      36
+    ],
+    "word_range": [
+      154457,
+      154806
+    ]
+  },
+  {
+    "surah_id": 84,
+    "name_en": "The Splitting Open",
+    "name_ar": "الإنشقاق",
+    "ayah_range": [
+      1,
+      25
+    ],
+    "word_range": [
+      154807,
+      155049
+    ]
+  },
+  {
+    "surah_id": 85,
+    "name_en": "The Constellations",
+    "name_ar": "البروج",
+    "ayah_range": [
+      1,
+      22
+    ],
+    "word_range": [
+      155050,
+      155260
+    ]
+  },
+  {
+    "surah_id": 86,
+    "name_en": "The Morning Star",
+    "name_ar": "الطارق",
+    "ayah_range": [
+      1,
+      17
+    ],
+    "word_range": [
+      155261,
+      155392
+    ]
+  },
+  {
+    "surah_id": 87,
+    "name_en": "The Most High",
+    "name_ar": "الأعلى",
+    "ayah_range": [
+      1,
+      19
+    ],
+    "word_range": [
+      155393,
+      155536
+    ]
+  },
+  {
+    "surah_id": 88,
+    "name_en": "The Overwhelming",
+    "name_ar": "الغاشية",
+    "ayah_range": [
+      1,
+      26
+    ],
+    "word_range": [
+      155537,
+      155727
+    ]
+  },
+  {
+    "surah_id": 89,
+    "name_en": "The Dawn",
+    "name_ar": "الفجر",
+    "ayah_range": [
+      1,
+      30
+    ],
+    "word_range": [
+      155728,
+      156020
+    ]
+  },
+  {
+    "surah_id": 90,
+    "name_en": "The City",
+    "name_ar": "البلد",
+    "ayah_range": [
+      1,
+      20
+    ],
+    "word_range": [
+      156021,
+      156197
+    ]
+  },
+  {
+    "surah_id": 91,
+    "name_en": "The Sun",
+    "name_ar": "الشمس",
+    "ayah_range": [
+      1,
+      15
+    ],
+    "word_range": [
+      156198,
+      156354
+    ]
+  },
+  {
+    "surah_id": 92,
+    "name_en": "The Night",
+    "name_ar": "الليل",
+    "ayah_range": [
+      1,
+      21
+    ],
+    "word_range": [
+      156355,
+      156526
+    ]
+  },
+  {
+    "surah_id": 93,
+    "name_en": "The Morning Hours",
+    "name_ar": "الضحى",
+    "ayah_range": [
+      1,
+      11
+    ],
+    "word_range": [
+      156527,
+      156868
+    ]
+  },
+  {
+    "surah_id": 94,
+    "name_en": "The Consolation",
+    "name_ar": "الشرح",
+    "ayah_range": [
+      1,
+      8
+    ],
+    "word_range": [
+      156869,
+      156930
+    ]
+  },
+  {
+    "surah_id": 95,
+    "name_en": "The Fig",
+    "name_ar": "التين",
+    "ayah_range": [
+      1,
+      8
+    ],
+    "word_range": [
+      156931,
+      157000
+    ]
+  },
+  {
+    "surah_id": 96,
+    "name_en": "The Clot",
+    "name_ar": "العلق",
+    "ayah_range": [
+      1,
+      19
+    ],
+    "word_range": [
+      157001,
+      157134
+    ]
+  },
+  {
+    "surah_id": 97,
+    "name_en": "The Power",
+    "name_ar": "القدر",
+    "ayah_range": [
+      1,
+      5
+    ],
+    "word_range": [
+      157135,
+      157190
+    ]
+  },
+  {
+    "surah_id": 98,
+    "name_en": "The Evidence",
+    "name_ar": "البينة",
+    "ayah_range": [
+      1,
+      8
+    ],
+    "word_range": [
+      157191,
+      157359
+    ]
+  },
+  {
+    "surah_id": 99,
+    "name_en": "The Earthquake",
+    "name_ar": "الزلزلة",
+    "ayah_range": [
+      1,
+      8
+    ],
+    "word_range": [
+      157360,
+      157434
+    ]
+  },
+  {
+    "surah_id": 100,
+    "name_en": "The Chargers",
+    "name_ar": "العاديات",
+    "ayah_range": [
+      1,
+      11
+    ],
+    "word_range": [
+      157435,
+      157517
+    ]
+  },
+  {
+    "surah_id": 101,
+    "name_en": "The Calamity",
+    "name_ar": "القارعة",
+    "ayah_range": [
+      1,
+      11
+    ],
+    "word_range": [
+      157518,
+      157603
+    ]
+  },
+  {
+    "surah_id": 102,
+    "name_en": "Competition",
+    "name_ar": "التكاثر",
+    "ayah_range": [
+      1,
+      8
+    ],
+    "word_range": [
+      157604,
+      157663
+    ]
+  },
+  {
+    "surah_id": 103,
+    "name_en": "The Declining Day",
+    "name_ar": "العصر",
+    "ayah_range": [
+      1,
+      3
+    ],
+    "word_range": [
+      157664,
+      157692
+    ]
+  },
+  {
+    "surah_id": 104,
+    "name_en": "The Traducer",
+    "name_ar": "الهمزة",
+    "ayah_range": [
+      1,
+      9
+    ],
+    "word_range": [
+      157693,
+      157758
+    ]
+  },
+  {
+    "surah_id": 105,
+    "name_en": "The Elephant",
+    "name_ar": "الفيل",
+    "ayah_range": [
+      1,
+      5
+    ],
+    "word_range": [
+      157759,
+      157804
+    ]
+  },
+  {
+    "surah_id": 106,
+    "name_en": "Quraysh",
+    "name_ar": "قريش",
+    "ayah_range": [
+      1,
+      4
+    ],
+    "word_range": [
+      157805,
+      157845
+    ]
+  },
+  {
+    "surah_id": 107,
+    "name_en": "Almsgiving",
+    "name_ar": "الماعون",
+    "ayah_range": [
+      1,
+      7
+    ],
+    "word_range": [
+      157846,
+      157897
+    ]
+  },
+  {
+    "surah_id": 108,
+    "name_en": "Abundance",
+    "name_ar": "الكوثر",
+    "ayah_range": [
+      1,
+      3
+    ],
+    "word_range": [
+      157898,
+      157923
+    ]
+  },
+  {
+    "surah_id": 109,
+    "name_en": "The Disbelievers",
+    "name_ar": "الكافرون",
+    "ayah_range": [
+      1,
+      6
+    ],
+    "word_range": [
+      157924,
+      157971
+    ]
+  },
+  {
+    "surah_id": 110,
+    "name_en": "Divine Support",
+    "name_ar": "النصر",
+    "ayah_range": [
+      1,
+      3
+    ],
+    "word_range": [
+      157972,
+      158014
+    ]
+  },
+  {
+    "surah_id": 111,
+    "name_en": "The Palm Fibre",
+    "name_ar": "المسد",
+    "ayah_range": [
+      1,
+      5
+    ],
+    "word_range": [
+      158015,
+      158066
+    ]
+  },
+  {
+    "surah_id": 112,
+    "name_en": "Sincerity",
+    "name_ar": "الإخلاص",
+    "ayah_range": [
+      1,
+      4
+    ],
+    "word_range": [
+      158067,
+      158090
+    ]
+  },
+  {
+    "surah_id": 113,
+    "name_en": "The Dawn",
+    "name_ar": "الفلق",
+    "ayah_range": [
+      1,
+      5
+    ],
+    "word_range": [
+      158091,
+      158135
+    ]
+  },
+  {
+    "surah_id": 114,
+    "name_en": "Mankind",
+    "name_ar": "الناس",
+    "ayah_range": [
+      1,
+      6
+    ],
+    "word_range": [
+      158136,
+      158173
+    ]
+  }
+]
