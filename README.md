@@ -1,226 +1,555 @@
 # 🕌 Quran Audio Scraper
 
-A comprehensive Streamlit application for downloading Quran audio files with progress tracking, error handling, and organized file management.
+A comprehensive Streamlit application for downloading Quran audio files with real-time progress tracking, enhanced UI, error handling, and organized file management.
 
 ## ✨ Features
 
-- **Interactive UI**: User-friendly Streamlit interface with dropdown selection
-- **Progress Tracking**: Real-time download progress with speed monitoring
-- **Error Handling**: Robust error handling with automatic retry mechanisms
-- **Organized Downloads**: Automatic ZIP file creation with metadata
-- **Logging System**: Comprehensive logging for all operations
-- **Async Downloads**: Fast concurrent downloads with configurable limits
-- **Directory Management**: Custom download directory selection
-- **Statistics**: Detailed download statistics and performance metrics
+- **🎨 Enhanced UI**: Beautiful, responsive interface with real-time progress tracking
+- **📊 Live Progress**: Real-time download progress with visual indicators and stats
+- **🌐 URL Management**: Editable URL input with validation and history
+- **⚡ Async Downloads**: Fast concurrent downloads with configurable limits
+- **📈 Statistics**: Detailed download statistics with color-coded metrics
+- **🐳 Docker Support**: Easy deployment with Docker and Docker Compose
+- **📁 Auto Organization**: Automatic ZIP file creation with metadata
+- **📋 Comprehensive Logging**: Real-time logging with downloadable log files
+- **🔄 Auto-Refresh**: Live updates during download process
+- **🎯 Error Handling**: Robust error handling with retry mechanisms
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### 🐳 Docker Setup (Recommended)
 
-- Python 3.8 or higher
-- Internet connection
-- `quran_data.json` file (included)
+#### Using Docker Compose (Easiest)
 
-### Installation
-
-1. **Clone or download the project**
-2. **Run the setup script:**
+1. **Clone the repository:**
    ```bash
+   git clone <repository-url>
+   cd audio_scraper
+   ```
+
+2. **Start with Docker Compose:**
+   ```bash
+   docker-compose up -d
+   ```
+
+3. **Access the application:**
+   - Open your browser and go to: **http://localhost:8501**
+   - The application will be running in the background
+
+4. **Stop the application:**
+   ```bash
+   docker-compose down
+   ```
+
+#### Using Docker Build
+
+1. **Build the Docker image:**
+   ```bash
+   docker build -t quran-audio-scraper .
+   ```
+
+2. **Run the container:**
+   ```bash
+   docker run -d \
+     --name quran-scraper \
+     -p 8501:8501 \
+     -v $(pwd)/downloads:/app/downloads \
+     -v $(pwd)/logs:/app/logs \
+     quran-audio-scraper
+   ```
+
+3. **Access the application:**
+   - URL: **http://localhost:8501**
+   - Container name: `quran-scraper`
+
+4. **Stop and remove:**
+   ```bash
+   docker stop quran-scraper
+   docker rm quran-scraper
+   ```
+
+### 💻 Local Setup (Without Docker)
+
+#### Prerequisites
+
+- **Python 3.8+** (recommended: Python 3.10 or higher)
+- **Internet connection**
+- **4GB+ RAM** (for efficient concurrent downloads)
+
+#### Automatic Setup
+
+1. **Run the setup script:**
+   ```bash
+   chmod +x setup.sh
    ./setup.sh
    ```
 
-3. **Start the application:**
+2. **Start the application:**
    ```bash
    ./run.sh
    ```
 
-### Manual Installation
+3. **Access the application:**
+   - Open browser: **http://localhost:8501**
 
-If you prefer manual setup:
+#### Manual Setup
 
-```bash
-# Create virtual environment
-python3 -m venv venv
-source venv/bin/activate
+1. **Create virtual environment:**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
 
-# Install requirements
-pip install -r requirements.txt
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-# Create directories
-mkdir -p downloads logs
+3. **Create directories:**
+   ```bash
+   mkdir -p downloads logs
+   ```
 
-# Run the application
-streamlit run app.py
+4. **Run the application:**
+   ```bash
+   streamlit run app.py --server.port=8501 --server.address=0.0.0.0
+   ```
+
+5. **Access the application:**
+   - Local: **http://localhost:8501**
+   - Network: **http://your-ip:8501**
+
+## 🌐 Network Configuration
+
+### Port and Host Information
+
+| Setup Type | Default Host | Default Port | Access URL |
+|------------|--------------|--------------|------------|
+| **Docker Compose** | 0.0.0.0 | 8501 | http://localhost:8501 |
+| **Docker Run** | 0.0.0.0 | 8501 | http://localhost:8501 |
+| **Local Development** | localhost | 8501 | http://localhost:8501 |
+| **Network Access** | 0.0.0.0 | 8501 | http://your-ip:8501 |
+
+### Custom Port Configuration
+
+#### Docker Compose
+Edit `docker-compose.yml`:
+```yaml
+ports:
+  - "8080:8501"  # External:Internal
 ```
 
-## 📱 Usage
+#### Docker Run
+```bash
+docker run -p 8080:8501 quran-audio-scraper
+```
 
-1. **Open the application** in your browser (usually http://localhost:8501)
-2. **Initialize the downloader** using the sidebar
-3. **Select a Surah** from the dropdown menu
-4. **Choose download directory** (optional, defaults to `downloads/`)
-5. **Click "Download Audio Files"** to start the download
-6. **Monitor progress** in the Progress tab
-7. **View logs** in the Logs tab
-8. **Download the ZIP file** when complete
+#### Local Setup
+```bash
+streamlit run app.py --server.port=8080
+```
+
+### Network Access Setup
+
+To allow access from other devices on your network:
+
+#### Docker (Already configured)
+```bash
+# Docker automatically binds to 0.0.0.0
+docker-compose up -d
+```
+
+#### Local Setup
+```bash
+streamlit run app.py --server.address=0.0.0.0 --server.port=8501
+```
+
+Access from other devices: `http://your-computer-ip:8501`
+
+## 📱 Usage Guide
+
+### 1. Initial Setup
+1. **Access the application** in your browser
+2. **Configure the base URL** in the URL input section
+3. **Initialize the downloader** using the sidebar
+4. **Select download directory** (optional)
+
+### 2. URL Configuration
+- **Base URL Input**: Enter or edit the audio source URL
+- **URL Validation**: Click "Validate URL" to check format
+- **URL History**: Access recently used URLs
+- **Auto-save**: URLs are automatically saved to history
+
+### 3. Download Process
+1. **Select a Surah** from the dropdown (114 surahs available)
+2. **View Ayah count** and Surah details
+3. **Click "Download Audio Files"** to start
+4. **Monitor progress** in the Progress tab
+5. **Download ZIP file** when complete
+
+### 4. Progress Monitoring
+- **Real-time progress bar** with percentage
+- **Live status updates** with current operation
+- **Download statistics** (successful/failed files)
+- **Speed and time estimates**
+- **Auto-refresh** every 2 seconds
+
+### 5. Statistics Dashboard
+- **Total requests** and **success rate**
+- **File counts** with color-coded metrics
+- **Download size** and **duration**
+- **Error tracking** and **performance metrics**
 
 ## 📁 Project Structure
 
 ```
 audio_scraper/
-├── app.py                 # Main Streamlit application
-├── downloader.py          # Core downloader class
-├── utils.py              # Utility functions
-├── constants.py          # Configuration constants
-├── quran_data.json       # Quran metadata
-├── requirements.txt      # Python dependencies
-├── setup.sh             # Setup script
-├── run.sh               # Run script
-├── .env.example         # Environment variables example
-├── README.md            # This file
-├── downloads/           # Download directory (created automatically)
-└── logs/               # Log files directory (created automatically)
+├── 🐳 Docker Configuration
+│   ├── Dockerfile                 # Docker container configuration
+│   ├── docker-compose.yml         # Docker Compose setup
+│   └── .dockerignore              # Docker ignore patterns
+├── 🚀 Application Core
+│   ├── app.py                     # Main Streamlit application
+│   ├── downloader.py              # Core downloader class
+│   ├── utils.py                   # Utility functions
+│   └── constants.py               # Configuration constants
+├── 📊 Data & Configuration
+│   ├── quran_data.json            # Quran metadata (114 surahs)
+│   ├── requirements.txt           # Python dependencies
+│   └── .env.example               # Environment variables template
+├── 🛠️ Scripts
+│   ├── setup.sh                   # Automated setup script
+│   └── run.sh                     # Application runner script
+├── 📁 Directories (auto-created)
+│   ├── downloads/                 # Downloaded files and ZIPs
+│   ├── logs/                      # Application logs
+│   └── venv/                      # Python virtual environment
+└── 📚 Documentation
+    └── README.md                  # This comprehensive guide
 ```
 
-## ⚙️ Configuration
+## ⚙️ Configuration Options
 
 ### Environment Variables
 
-Copy `.env.example` to `.env` and modify as needed:
-
+Create `.env` file for custom configuration:
 ```bash
+# Copy template
 cp .env.example .env
+
+# Edit configuration
+nano .env
 ```
 
-### Constants
+Available variables:
+```bash
+# Server Configuration
+STREAMLIT_SERVER_PORT=8501
+STREAMLIT_SERVER_ADDRESS=0.0.0.0
 
-Modify `constants.py` to adjust:
-- Download URLs
-- Request timeouts
-- Concurrent download limits
-- File extensions
-- Log levels
+# Download Configuration
+DEFAULT_DOWNLOAD_DIR=downloads
+CONCURRENT_DOWNLOADS=5
+MAX_RETRIES=3
+TIMEOUT=30
 
-## 📊 Features Details
-
-### Download Process
-
-1. **Surah Selection**: Choose from 114 surahs with English and Arabic names
-2. **URL Generation**: Automatic URL generation for each word audio file
-3. **Concurrent Downloads**: Configurable concurrent download limits
-4. **Progress Tracking**: Real-time progress updates with speed monitoring
-5. **Error Handling**: Automatic retry for failed downloads
-6. **ZIP Creation**: Automatic ZIP file creation with metadata
-7. **Cleanup**: Temporary file cleanup after ZIP creation
-
-### File Organization
-
-Each downloaded surah creates:
-- `surah_XXX.zip`: Contains all audio files and metadata
-- `metadata.json`: File mapping with surah_id, ayah_id, word_id, and file paths
-- Individual audio files: `001_001_001.mp3` format
-
-### Logging
-
-Comprehensive logging includes:
-- Download progress
-- Error messages
-- Performance metrics
-- Request statistics
-- File operations
-
-## 🔧 Advanced Usage
-
-### Custom Download Directory
-
-```python
-from downloader import QuranAudioDownloader
-
-downloader = QuranAudioDownloader(download_dir="custom/path")
-result = downloader.download_surah(surah_id=1, custom_dir="another/path")
+# Logging Configuration
+LOG_LEVEL=INFO
+LOG_DIR=logs
 ```
 
-### Progress Callback
+### Application Constants
 
+Edit `constants.py` for advanced configuration:
+- **Audio URLs** and **API endpoints**
+- **Request timeouts** and **retry limits**
+- **Concurrent download** limits
+- **File extensions** and **naming patterns**
+- **UI messages** and **labels**
+
+## 🔧 Advanced Features
+
+### Custom Audio Sources
 ```python
-def my_progress_callback(progress, current, total, message):
-    print(f"Progress: {progress:.1f}% - {message}")
-
-downloader.set_progress_callback(my_progress_callback)
+# In constants.py
+BASE_URL = "https://your-audio-source.com"
+AUDIO_URL_TEMPLATE = "https://your-audio-source.com/path/{surah_id:03d}_{ayah_id:03d}_{word_id:03d}.mp3"
 ```
 
-### Statistics
-
+### Progress Callbacks
 ```python
-stats = downloader.get_download_stats()
-print(f"Downloaded: {stats['successful_downloads']} files")
-print(f"Total size: {stats['formatted_size']}")
-print(f"Speed: {stats['speed']:.2f} MB/s")
+def custom_progress_callback(progress, current, total, message):
+    print(f"Custom: {progress:.1f}% - {message}")
+
+downloader.set_progress_callback(custom_progress_callback)
+```
+
+### Batch Downloads
+```python
+# Download multiple surahs
+for surah_id in [1, 2, 3]:
+    result = downloader.download_surah(surah_id)
+    print(f"Surah {surah_id}: {result['successful_downloads']} files")
 ```
 
 ## 🐛 Troubleshooting
 
 ### Common Issues
 
-1. **"quran_data.json not found"**
-   - Ensure the file is in the project root directory
+#### 🐳 Docker Issues
 
-2. **"Failed to initialize downloader"**
-   - Check internet connection
-   - Verify Python dependencies are installed
+**Port already in use:**
+```bash
+# Check what's using the port
+sudo netstat -tulpn | grep :8501
 
-3. **"Download failed"**
-   - Check logs for specific error messages
-   - Verify the audio URL template is correct
-   - Check network connectivity
+# Kill the process or use different port
+docker-compose down
+docker-compose up -d
+```
 
-4. **"Permission denied"**
-   - Ensure write permissions for download directory
-   - Run with appropriate user permissions
+**Permission denied (Linux):**
+```bash
+# Add user to docker group
+sudo usermod -aG docker $USER
+newgrp docker
+
+# Or run with sudo
+sudo docker-compose up -d
+```
+
+**Container won't start:**
+```bash
+# Check logs
+docker-compose logs quran-scraper
+
+# Rebuild container
+docker-compose down
+docker-compose build --no-cache
+docker-compose up -d
+```
+
+#### 💻 Local Setup Issues
+
+**"quran_data.json not found":**
+```bash
+# Ensure file exists in project root
+ls -la quran_data.json
+
+# Download if missing
+wget <source-url>/quran_data.json
+```
+
+**"Module not found" errors:**
+```bash
+# Activate virtual environment
+source venv/bin/activate
+
+# Reinstall dependencies
+pip install -r requirements.txt
+```
+
+**"Permission denied" for downloads:**
+```bash
+# Fix directory permissions
+mkdir -p downloads logs
+chmod 755 downloads logs
+
+# Run with proper permissions
+sudo chown -R $USER:$USER downloads logs
+```
+
+#### 🌐 Network Issues
+
+**Can't access from other devices:**
+```bash
+# Check firewall (Linux)
+sudo ufw allow 8501
+
+# Check firewall (Windows)
+# Add inbound rule for port 8501
+
+# Verify server address
+streamlit run app.py --server.address=0.0.0.0
+```
+
+**Download failures:**
+```bash
+# Check internet connection
+ping google.com
+
+# Verify audio URL
+curl -I "https://audios.quranwbw.com/words/001/001_001_001.mp3"
+
+# Check logs for details
+tail -f logs/quran_downloader.log
+```
+
+#### ⚡ Performance Issues
+
+**Slow downloads:**
+```bash
+# Reduce concurrent downloads in constants.py
+CONCURRENT_DOWNLOADS = 3
+
+# Increase timeout
+TIMEOUT = 60
+```
+
+**High memory usage:**
+```bash
+# Monitor usage
+docker stats quran-scraper
+
+# Limit container memory
+docker run --memory=1g quran-audio-scraper
+```
 
 ### Log Analysis
 
-Check log files in the `logs/` directory for detailed error information:
-- Download failures
-- Network issues
-- File system errors
-- Performance metrics
+**View real-time logs:**
+```bash
+# Docker
+docker-compose logs -f quran-scraper
 
-## 📈 Performance
+# Local
+tail -f logs/quran_downloader.log
+```
 
-- **Concurrent Downloads**: Configurable (default: 5)
-- **Retry Mechanism**: Automatic retry for failed requests
-- **Memory Efficient**: Streaming downloads for large files
-- **Progress Updates**: Real-time progress tracking
-- **Speed Monitoring**: Download speed calculation and history
+**Log levels and meanings:**
+- **INFO**: Normal operations
+- **WARNING**: Minor issues (e.g., retries)
+- **ERROR**: Failed downloads or system errors
+- **CRITICAL**: Application-breaking issues
+
+## 📈 Performance Optimization
+
+### Docker Performance
+```yaml
+# docker-compose.yml optimizations
+services:
+  quran-scraper:
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '0.5'
+        reservations:
+          memory: 512M
+```
+
+### Download Optimization
+```python
+# constants.py tuning
+CONCURRENT_DOWNLOADS = 5    # Adjust based on network
+TIMEOUT = 30               # Increase for slow networks
+MAX_RETRIES = 3            # Balance between reliability and speed
+```
+
+### Memory Optimization
+```python
+# Enable streaming for large files
+STREAM_DOWNLOADS = True
+CHUNK_SIZE = 8192
+```
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+### Development Setup
+```bash
+# Clone repository
+git clone <repository-url>
+cd audio_scraper
+
+# Setup development environment
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+# Install development tools
+pip install black isort flake8 pytest
+
+# Run tests
+pytest tests/
+
+# Format code
+black .
+isort .
+```
+
+### Adding Features
+1. **Fork** the repository
+2. **Create feature branch**: `git checkout -b feature/new-feature`
+3. **Make changes** and **add tests**
+4. **Run quality checks**: `black . && isort . && flake8`
+5. **Commit changes**: `git commit -m "Add new feature"`
+6. **Submit pull request**
+
+## 📞 Support & Resources
+
+### Getting Help
+1. **Check logs** for detailed error information
+2. **Review troubleshooting** section above
+3. **Search existing issues** in the repository
+4. **Create new issue** with:
+   - OS and Python version
+   - Setup method (Docker/Local)
+   - Complete error logs
+   - Steps to reproduce
+
+### Useful Commands
+
+**Docker Management:**
+```bash
+# View running containers
+docker ps
+
+# Restart application
+docker-compose restart
+
+# Update application
+docker-compose pull && docker-compose up -d
+
+# Clean up
+docker system prune -a
+```
+
+**Application Management:**
+```bash
+# Check application status
+curl http://localhost:8501/_stcore/health
+
+# Monitor logs
+tail -f logs/quran_downloader.log
+
+# Check disk usage
+du -sh downloads/ logs/
+```
 
 ## 📄 License
 
-This project is open source and available under the MIT License.
+This project is open source and available under the **MIT License**.
 
 ## 🙏 Acknowledgments
 
-- Quran data from authentic sources
-- Streamlit for the excellent web framework
-- Python community for the amazing libraries
-
-## 📞 Support
-
-For issues and questions:
-1. Check the logs for error details
-2. Review the troubleshooting section
-3. Create an issue with detailed information
+- **Quran data** from authentic Islamic sources
+- **Streamlit** for the excellent web framework
+- **Python community** for amazing libraries
+- **Docker** for containerization support
+- **Contributors** and **users** for feedback and improvements
 
 ---
 
-**Note**: This tool is for educational and personal use. Please respect the terms of service of the audio source website.
+## 🔗 Quick Links
 
-sudo docker build -t quran-adio-scraper .
+- **Application**: http://localhost:8501
+- **Health Check**: http://localhost:8501/_stcore/health
+- **Documentation**: This README
+- **Issues**: Repository issues page
+- **Releases**: Repository releases page
+
+**📝 Note**: This tool is for educational and personal use. Please respect the terms of service of audio source websites and ensure you have proper permissions for downloading content.
+
+---
+
+**⭐ If this project helps you, please consider giving it a star!**
