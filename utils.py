@@ -272,7 +272,7 @@ def get_download_progress(current: int, total: int) -> float:
     """Calculate download progress percentage"""
     if total == 0:
         return 0.0
-    return (current / total) * 100
+    return ((current / total) * 100)
 
 
 def estimate_word_count_for_ayah(surah_id: int, ayah_id: int, total_words: int, total_ayahs: int) -> int:

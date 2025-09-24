@@ -1,5 +1,5 @@
 """
-Streamlit application for Quran Audio Scraper
+Streamlit application for Quran Audio Scraper - Compact Version
 """
 
 import streamlit as st
@@ -19,6 +19,14 @@ from urllib.parse import urlparse
 from downloader import QuranAudioDownloader
 from constants import MESSAGES, DEFAULT_DOWNLOAD_DIR
 from utils import format_file_size, format_duration
+from log_parser import render_log_parser
+from statistics_component import render_statistics_component
+from ui_components import (
+    render_compact_download_options, 
+    render_compact_progress_display, 
+    render_compact_results,
+    render_compact_sidebar
+)
 
 
 # Page configuration - Force light mode
@@ -210,6 +218,9 @@ st.markdown("""
     .e1nzilvr3 {
         display: none;
      }
+     [data-testid="stHorizontalBlock"] {
+        align-items: flex-end !important;
+     }
 </style>
 """, unsafe_allow_html=True)
 
@@ -233,7 +244,7 @@ def initialize_session_state():
     if 'download_thread' not in st.session_state:
         st.session_state.download_thread = None
     if 'current_url' not in st.session_state:
-        st.session_state.current_url = ""
+        st.session_state.current_url = "https://audios.quranwbw.com/words/"
     if 'url_history' not in st.session_state:
         st.session_state.url_history = []
     if 'download_type' not in st.session_state:
@@ -288,7 +299,7 @@ def download_surah_enhanced_async(surah_id: int, download_dir: str, download_typ
         downloader.set_progress_callback(enhanced_progress_callback)
         
         # Run the download
-        result = downloader.download_surah(
+        result = downloader.download_surah_enhanced(
             surah_id=surah_id,
             download_type=download_type,
             start_verse=start_verse,
@@ -327,12 +338,10 @@ def main():
     st.markdown('<h1 class="main-header">🕌 Quran Audio Scraper</h1>', unsafe_allow_html=True)
 
     # FIXED: URL Input Section using Streamlit containers instead of raw HTML
-    with st.container():
-        
+    with st.expander("🌐 Audio URL Configuration", expanded=False):
         col1, col2 = st.columns([3, 1])
         
         with col1:
-            st.subheader("🌐 Audio URL Configuration")
             url_input = st.text_input(
                 "Base Audio URL",
                 value=st.session_state.current_url,
@@ -361,7 +370,6 @@ def main():
                     st.session_state.current_url = url
                     st.rerun()
 
-
     # FIXED: Footer using proper CSS class
     st.markdown("""
         <div class="custom-footer">
@@ -370,37 +378,10 @@ def main():
     """, unsafe_allow_html=True)
     
     # Sidebar
-    with st.sidebar:
-        st.header("⚙️ Settings")
-        
-        # Download directory selection
-        download_dir = st.text_input(
-            "📁 Download Directory",
-            value=DEFAULT_DOWNLOAD_DIR,
-            help="Directory where audio files will be downloaded"
-        )
-        
-        # Create downloader
-        if st.button("🚀 Initialize Downloader", type="primary"):
-            st.session_state.downloader = create_downloader(download_dir, "logs")
-            if st.session_state.downloader:
-                st.success("✅ downloader initialized successfully!")
-        
-        # Show current progress for any surah
-        if st.session_state.downloader:
-            st.markdown("### 📊 Current Progress")
-            
-            # Get list of surahs with progress
-            surah_list = st.session_state.downloader.get_surah_list()
-            
-            # Show progress for first few surahs as example
-            for surah in surah_list[:5]:  # Show first 5 surahs
-                progress = st.session_state.downloader.get_surah_progress(surah['id'])
-                if progress.get('downloaded_files', 0) > 0:
-                    st.write(f"**{surah['name_en']}**: {progress['downloaded_files']} files")
+    download_dir = render_compact_sidebar(st.session_state.downloader, DEFAULT_DOWNLOAD_DIR)
     
     # Main content
-    tab1, tab2 = st.tabs(["📥 Download", "📋 Logs"])
+    tab1, tab2, tab3 = st.tabs(["📥 Download", "📋 Logs", "📊 Statistics"])
     
     with tab1:
         st.header("📥 Quran Audio Download")
@@ -409,154 +390,12 @@ def main():
             st.warning("⚠️ Please initialize the enhanced downloader first using the sidebar.")
             return
         
-        # Get surah list
-        surah_list = st.session_state.downloader.get_surah_list()
-        df = pd.DataFrame(surah_list)
-
-        with st.container():
-            st.subheader("🎛️ Download Options")
-            
-            col1, col2 = st.columns(2)
-            
-            with col1:
-                # Download Type Selection
-                download_type = st.radio(
-                    "📋 Download Type",
-                    ["word_by_word", "verse_by_verse"],
-                    format_func=lambda x: "🔤 Word by Word" if x == "word_by_word" else "📖 Verse by Verse",
-                    help="Choose how to download the audio files"
-                )
-                st.session_state.download_type = download_type
-            
-            with col2:
-                # Resume Option
-                resume_download = st.checkbox(
-                    "🔄 Resume Downloads",
-                    value=True,
-                    help="Resume from last successful file if interrupted"
-                )
-                st.session_state.download_options['resume'] = resume_download
-            
-            # Surah Selection
-            st.subheader("🕌 Surah Selection")
-            col1, col2, col3 = st.columns([2, 1, 1])
-            
-            with col1:
-                selected_surah = st.selectbox(
-                    "Select Surah",
-                    options=df.index,
-                    format_func=lambda x: f"{df.iloc[x]['id']:03d} - {df.iloc[x]['name_en']} ({df.iloc[x]['name_ar']})"
-                )
-            
-            with col2:
-                st.metric("📖 Verses", df.iloc[selected_surah]['ayah_count'])
-            
-            with col3:
-                st.metric("🔤 Words", df.iloc[selected_surah]['word_count'])
-            
-            # Range Selection
-            surah_data = df.iloc[selected_surah]
-            ayah_range = surah_data['ayah_range']
-            word_range = surah_data['word_range']
-            
-            st.subheader("📊 Range Selection")
-            
-            col1, col2 = st.columns(2)
-            
-            with col1:
-                # Verse Range
-                st.write("**Verse Range:**")
-                verse_col1, verse_col2 = st.columns(2)
-                
-                with verse_col1:
-                    start_verse = st.number_input(
-                        "Start Verse",
-                        min_value=ayah_range[0],
-                        max_value=ayah_range[1],
-                        value=ayah_range[0],
-                        help=f"Starting verse (range: {ayah_range[0]}-{ayah_range[1]})"
-                    )
-                
-                with verse_col2:
-                    end_verse = st.number_input(
-                        "End Verse",
-                        min_value=ayah_range[0],
-                        max_value=ayah_range[1],
-                        value=ayah_range[1],
-                        help=f"Ending verse (range: {ayah_range[0]}-{ayah_range[1]})"
-                    )
-                
-                # Validate verse range
-                if start_verse > end_verse:
-                    st.error("Start verse cannot be greater than end verse!")
-                    return
-                
-                st.session_state.download_options['start_verse'] = start_verse
-                st.session_state.download_options['end_verse'] = end_verse
-            
-            with col2:
-                # Word Range (only for word-by-word downloads)
-                if download_type == "word_by_word":
-                    st.write("**Word Range (Optional):**")
-                    word_col1, word_col2 = st.columns(2)
-                    
-                    with word_col1:
-                        start_word = st.number_input(
-                            "Start Word",
-                            min_value=1,
-                            max_value=1000,
-                            value=1,
-                            help="Starting word number (leave as 1 for all words)"
-                        )
-                    
-                    with word_col2:
-                        end_word = st.number_input(
-                            "End Word",
-                            min_value=1,
-                            max_value=1000,
-                            value=1000,
-                            help="Ending word number (leave as 1000 for all words)"
-                        )
-                    
-                    # Validate word range
-                    if start_word > end_word:
-                        st.error("Start word cannot be greater than end word!")
-                        return
-                    
-                    st.session_state.download_options['start_word'] = start_word
-                    st.session_state.download_options['end_word'] = end_word
-                else:
-                    st.session_state.download_options['start_word'] = None
-                    st.session_state.download_options['end_word'] = None
-            
-            # Download Summary
-            st.subheader("📋 Download Summary")
-            
-            surah_id = surah_data['id']
-            surah_name = surah_data['name_en']
-            
-            # Calculate estimated files
-            if download_type == "word_by_word":
-                estimated_files = (end_verse - start_verse + 1) * 10  # Rough estimate
-                download_type_text = "Word by Word"
-            else:
-                estimated_files = end_verse - start_verse + 1
-                download_type_text = "Verse by Verse"
-            
-            col1, col2, col3, col4 = st.columns(4)
-            
-            with col1:
-                st.metric("🆔 Surah", f"{surah_id:03d}")
-            
-            with col2:
-                st.metric("📖 Verses", f"{start_verse}-{end_verse}")
-            
-            with col3:
-                st.metric("📁 Type", download_type_text)
-            
-            with col4:
-                st.metric("📊 Est. Files", estimated_files)
-            
+        # Render compact download options
+        result = render_compact_download_options(st.session_state.downloader, download_dir)
+        if result[0] is None:  # Error in validation
+            return
+        
+        surah_id, surah_name, download_type, download_dir = result
         
         # Download Button
         col1, col2, col3 = st.columns([1, 2, 1])
@@ -588,190 +427,17 @@ def main():
                 
                 st.success(f"🎯 download started for Surah {surah_id}: {surah_name}")
         
-        # FIXED: Progress and loading display using proper container
-        if st.session_state.download_in_progress:
-        # Named container for download progress
-            with st.container():
-                st.markdown(
-                    """
-                    <style>
-                    .download-box {
-                        max-height: 150px;
-                        overflow-y: auto;
-                        padding: 0.5rem;
-                        border: 1px solid #ddd;
-                        border-radius: 8px;
-                        background: #fafafa;
-                        margin-bottom: 0.5rem;
-                    }
-                    .status-box {
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        padding: 0.5rem;
-                        background: #f9f9f9;
-                        border-radius: 6px;
-                        border: 1px solid #ddd;
-                    }
-                    </style>
-                    """,
-                    unsafe_allow_html=True
-                )
-
-                col1, col2 = st.columns([1, 1])
-
-                with col1:
-                    if hasattr(st.session_state, "current_surah") and st.session_state.current_surah:
-                        current_info = f"📖 Surah {st.session_state.current_surah}"
-                        if getattr(st.session_state, "current_verse", None):
-                            current_info += f", Ayah {st.session_state.current_verse}"
-                        if getattr(st.session_state, "current_word", None):
-                            current_info += f", Word {st.session_state.current_word}"
-
-                        st.markdown(
-                            f"""
-                            <div class="download-box">
-                                🔄 <strong>Current:</strong> {current_info}
-                            </div>
-                            """,
-                            unsafe_allow_html=True,
-                        )
-                         # thread check
-                    if (
-                        st.session_state.download_thread
-                        and not st.session_state.download_thread.is_alive()
-                    ):
-                        st.session_state.download_in_progress = False
-
-                    # auto-refresh with spinner
-                    with st.spinner("Downloading..."):
-                        time.sleep(2)
-                        st.rerun()
-
-
-                with col2:
-                    status = "🟢 Active" if (
-                        st.session_state.download_thread
-                        and st.session_state.download_thread.is_alive()
-                    ) else "🔴 Inactive"
-
-                    st.markdown(
-                        f"""
-                        <div class="status-box">
-                            <span>{status}</span>
-                            <span>⏱️ {datetime.now().strftime('%H:%M:%S')}</span>
-                        </div>
-                        """,
-                        unsafe_allow_html=True,
-                    )
-
-
-        
-        # FIXED: Show download results using proper container
-        elif st.session_state.download_stats:
-            with st.container():
-                st.markdown('<div class="stats-container">', unsafe_allow_html=True)
-                
-                stats = st.session_state.download_stats
-                
-                # completion stats with colors
-                st.subheader("🎉 Download Completed!")
-                
-                col1, col2, col3, col4 = st.columns(4)
-                
-                with col1:
-                    st.metric("🆔 Surah ID", stats['surah_id'])
-                    st.metric("📖 Surah Name", stats['surah_name'])
-                
-                with col2:
-                    st.metric("📁 Total Files", stats['total_files'])
-                    st.metric("✅ Successful", stats['successful_downloads'], 
-                             delta=f"+{stats['successful_downloads']}", delta_color="normal")
-                
-                with col3:
-                    st.metric("❌ Failed", stats['failed_downloads'], 
-                             delta=f"+{stats['failed_downloads']}" if stats['failed_downloads'] > 0 else "0", 
-                             delta_color="inverse")
-                    st.metric("💾 Total Size", format_file_size(stats['total_size']))
-                
-                with col4:
-                    st.metric("⏱️ Duration", format_duration(stats['duration']))
-                    st.metric("�� Type", stats['download_type'].replace('_', ' ').title())
-                
-                # Show download details
-                st.subheader("📊 Download Details")
-                
-                if stats['download_type'] == 'word_by_word':
-                    st.write(f"**Word Range:** {stats.get('start_word', 'All')} - {stats.get('end_word', 'All')}")
-                st.write(f"**Verse Range:** {stats.get('start_verse', 'All')} - {stats.get('end_verse', 'All')}")
-                st.write(f"**Resume Enabled:** {'Yes' if st.session_state.download_options['resume'] else 'No'}")
-                
-                # Show folder structure info
-                surah_folder = f"{stats['surah_id']:03d}_{stats['surah_name'].replace(' ', '_').replace("'", '').replace('-', '_')}"
-                download_path = os.path.join(download_dir, surah_folder)
-                
-                if os.path.exists(download_path):
-                    st.success(f"📁 Files saved to: `{download_path}`")
-                    
-                    # Show some example files
-                    files = [f for f in os.listdir(download_path) if f.endswith('.mp3')]
-                    if files:
-                        st.write("**Sample files:**")
-                        for file in sorted(files)[:5]:  # Show first 5 files
-                            st.write(f"  - {file}")
-                        if len(files) > 5:
-                            st.write(f"  - ... and {len(files) - 5} more files")
-                
-                st.markdown('</div>', unsafe_allow_html=True)
+        # Render compact progress and results
+        render_compact_progress_display()
+        render_compact_results(download_dir)
     
     with tab2:
-        st.header("📋 Download Logs")
-        
-        # log selection
-        log_dir = "logs"
-        if os.path.exists(log_dir):
-            log_files = [f for f in os.listdir(log_dir) if f.endswith('.log')]
-            
-            if log_files:
-                col1, col2 = st.columns([2, 1])
-                
-                with col1:
-                    selected_log = st.selectbox("📄 Select Log File", log_files)
-                    log_path = os.path.join(log_dir, selected_log)
-                
-                with col2:
-                    if os.path.exists(log_path):
-                        file_size = os.path.getsize(log_path)
-                        st.metric("📏 File Size", format_file_size(file_size))
-                
-                # FIXED: Display log content using proper container
-                try:
-                    with open(log_path, 'r', encoding='utf-8') as f:
-                        log_content = f.read()
-                    
-                    with st.container():
-                        st.markdown('<div class="log-container">', unsafe_allow_html=True)
-                        st.text(log_content)
-                        st.markdown('</div>', unsafe_allow_html=True)
-                    
-                    # download log button
-                    col1, col2, col3 = st.columns([1, 2, 1])
-                    with col2:
-                        st.download_button(
-                            label="📥 Download Log File",
-                            data=log_content,
-                            file_name=selected_log,
-                            mime="text/plain",
-                            type="secondary",
-                            use_container_width=True
-                        )
-                
-                except Exception as e:
-                    st.error(f"❌ Error reading log file: {str(e)}")
-            else:
-                st.info("📝 No log files found.")
-        else:
-            st.info("📁 Log directory not found.")
+        # Use the new enhanced log parser
+        render_log_parser()
+    
+    with tab3:
+        # Use the new statistics component
+        render_statistics_component(st.session_state.downloader)
 
 
 if __name__ == "__main__":
