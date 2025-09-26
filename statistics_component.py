@@ -89,10 +89,10 @@ def render_statistics_component(downloader):
         col1, col2, col3 = st.columns(3)
         
         with col1:
-            st.metric("📥 Downloaded Surahs", downloaded_surahs, delta=f"{downloaded_surahs}/{total_surahs}")
+            st.metric("📁 Downloaded Files", total_downloaded_files)
         
         with col2:
-            st.metric("📁 Downloaded Files", total_downloaded_files)
+            st.metric("📥 Downloaded Surahs", downloaded_surahs, delta=f"{downloaded_surahs}/{total_surahs}")
         
         with col3:
             completion_rate = (downloaded_surahs / total_surahs * 100) if total_surahs > 0 else 0
@@ -109,6 +109,13 @@ def render_statistics_component(downloader):
             arabic_name = surah.get('name_ar', '')
             total_letters = surah.get('total_letters', 0)
             
+            # Fix progress calculation - ensure it's between 0 and 100
+            progress_percent = progress.get('progress', 0)
+            if progress_percent > 100:
+                progress_percent = 100.0
+            elif progress_percent < 0:
+                progress_percent = 0.0
+            
             progress_data.append({
                 'Surah ID': surah['id'],
                 'English Name': surah['name_en'],
@@ -117,19 +124,13 @@ def render_statistics_component(downloader):
                 'Total Words': surah['word_count'],
                 'Total Letters': total_letters,
                 'Downloaded Files': progress.get('downloaded_files', 0),
-                'Progress %': round(progress.get('progress', 0), 1),
-                'Status': '✅ Complete' if progress.get('progress', 0) >= 100 else 
+                'Progress %': round(progress_percent, 1),
+                'Status': '✅ Complete' if progress_percent >= 100 else 
                          '🔄 In Progress' if progress.get('downloaded_files', 0) > 0 else '⏸️ Not Started'
             })
         
         if progress_data:
             progress_df = pd.DataFrame(progress_data)
-            
-            # Add custom styling for Arabic text
-            def highlight_arabic(row):
-                if row['Arabic Name']:
-                    return ['background-color: #f0f8f0'] * len(row)
-                return [''] * len(row)
             
             # Display with custom formatting
             st.dataframe(
@@ -149,7 +150,7 @@ def render_statistics_component(downloader):
                     "Arabic Name": st.column_config.TextColumn(
                         "Arabic Name",
                         help="Arabic name of the surah",
-                        width="medium"
+                        width="small"
                     ),
                     "Total Verses": st.column_config.NumberColumn(
                         "Verses",
@@ -217,6 +218,12 @@ def render_statistics_component(downloader):
                 total_files = progress.get('total_files', 0)
                 progress_percent = progress.get('progress', 0)
                 
+                # Fix progress calculation
+                if progress_percent > 100:
+                    progress_percent = 100.0
+                elif progress_percent < 0:
+                    progress_percent = 0.0
+                
                 st.markdown(f"""
                 <div class="stats-metric">
                     <h4>📊 Download Progress</h4>
@@ -238,6 +245,14 @@ def render_statistics_component(downloader):
                 export_data = []
                 for surah in surah_list:
                     progress = downloader.get_surah_progress(surah['id'])
+                    progress_percent = progress.get('progress', 0)
+                    
+                    # Fix progress calculation for export
+                    if progress_percent > 100:
+                        progress_percent = 100.0
+                    elif progress_percent < 0:
+                        progress_percent = 0.0
+                    
                     export_data.append({
                         'Surah ID': surah['id'],
                         'English Name': surah['name_en'],
@@ -247,7 +262,7 @@ def render_statistics_component(downloader):
                         'Total Letters': surah.get('total_letters', 0),
                         'Downloaded Files': progress.get('downloaded_files', 0),
                         'Total Files': progress.get('total_files', 0),
-                        'Progress %': round(progress.get('progress', 0), 1)
+                        'Progress %': round(progress_percent, 1)
                     })
                 
                 export_df = pd.DataFrame(export_data)

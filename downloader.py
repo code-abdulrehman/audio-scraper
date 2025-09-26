@@ -176,7 +176,7 @@ class QuranAudioDownloader:
         return 0
     
     def get_surah_progress(self, surah_id: int) -> Dict:
-        """Get download progress for a specific surah"""
+        """Get download progress for a specific surah - FIXED to return percentage (0-100)"""
         surah_folder = f"{surah_id:03d}_{self.surah_names.get(str(surah_id).zfill(3), {}).get('name_en', f'Surah_{surah_id}').replace(' ', '_').replace("'", '').replace('-', '_')}"
         surah_dir = os.path.join(self.download_dir, surah_folder)
         
@@ -186,10 +186,13 @@ class QuranAudioDownloader:
         downloaded_files = len([f for f in os.listdir(surah_dir) if f.endswith('.mp3')])
         total_files = self.estimate_files_for_range(surah_id, "word_by_word")
         
+        # FIXED: Return progress as percentage (0-100) instead of decimal (0-1)
+        progress_percentage = (downloaded_files / total_files * 100) if total_files > 0 else 0
+        
         return {
             'downloaded_files': downloaded_files,
             'total_files': total_files,
-            'progress': (downloaded_files / total_files * 100) if total_files > 0 else 0
+            'progress': progress_percentage  # Return as percentage 0-100
         }
     
     async def download_surah_enhanced_async(self, surah_id: int, download_type: str = "word_by_word",

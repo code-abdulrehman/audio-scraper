@@ -245,7 +245,7 @@ def render_compact_sidebar(downloader, download_dir: str):
         
         # Download directory selection
         download_dir = st.text_input(
-            "�� Download Directory",
+            "📁 Download Directory",
             value=download_dir,
             help="Directory where audio files will be downloaded"
         )

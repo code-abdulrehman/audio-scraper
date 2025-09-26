@@ -375,7 +375,7 @@ def render_log_parser():
         with col3:
             # Date filters
             date_from = st.date_input("📅 From Date", value=None)
-            date_to = st.date_input("�� To Date", value=None)
+            date_to = st.date_input("📅 To Date", value=None)
             
             # Sort options
             sort_by = st.selectbox("🔄 Sort By", ["timestamp", "level", "surah", "status"])
